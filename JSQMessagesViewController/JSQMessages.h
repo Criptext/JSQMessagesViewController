@@ -27,6 +27,7 @@
 #import "JSQMessagesCollectionViewCellOutgoing.h"
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
+#import "JSQMessagesActivityIndicatorHeaderView.h"
 
 //  Layout
 #import "JSQMessagesBubbleSizeCalculating.h"
