@@ -78,4 +78,12 @@
  */
 - (NSUInteger)mediaHash;
 
+@optional
+/**
+ *	Checks if it needs the media downloaded
+ *
+ *	@return true if media is nil
+ */
+- (BOOL)needsDownload;
+
 @end

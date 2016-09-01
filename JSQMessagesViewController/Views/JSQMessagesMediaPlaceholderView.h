@@ -64,6 +64,17 @@
 + (instancetype)viewWithAttachmentIcon;
 
 /**
+ *  Creates a media placeholder view object with a light gray background and
+ *  a centered paperclip attachment icon.
+ *
+ *  @discussion When initializing a `JSQMessagesMediaPlaceholderView` with this method,
+ *  its activityIndicatorView property will be nil.
+ *
+ *  @return An initialized `JSQMessagesMediaPlaceholderView` object if successful, `nil` otherwise.
+ */
++ (id)viewWithAudioLoading;
+
+/**
  *  Creates a media placeholder view having the given frame, backgroundColor, and activityIndicatorView.
  *
  *  @param frame                 A rectangle defining the frame of the view. This value must be a non-zero, non-null rectangle.

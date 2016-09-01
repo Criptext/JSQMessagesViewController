@@ -23,6 +23,12 @@
 #import "JSQMessagesInputToolbar.h"
 #import "JSQMessagesKeyboardController.h"
 
+//@protocol InputDataDelegate <NSObject>
+//-(void)newAudio:(NSData *)data;
+//-(void)newImage:(NSData *)data;
+//
+//@end
+
 /**
  *  The `JSQMessagesViewController` class is an abstract class that represents a view controller whose content consists of
  *  a `JSQMessagesCollectionView` and `JSQMessagesInputToolbar` and is specialized to display a messaging interface.
@@ -31,6 +37,7 @@
  */
 @interface JSQMessagesViewController : UIViewController <JSQMessagesCollectionViewDataSource,
                                                          JSQMessagesCollectionViewDelegateFlowLayout,
+                                                         JSQMessagesInputToolbarDelegate,
                                                          UITextViewDelegate>
 
 /**

@@ -59,8 +59,7 @@
 - (instancetype)init
 {
     UIColor *tintColor = [UIColor jsq_messageBubbleBlueColor];
-    AVAudioSessionCategoryOptions options = AVAudioSessionCategoryOptionDuckOthers
-    | AVAudioSessionCategoryOptionDefaultToSpeaker
+    AVAudioSessionCategoryOptions options = AVAudioSessionCategoryOptionDefaultToSpeaker
     | AVAudioSessionCategoryOptionAllowBluetooth;
 
     return [self initWithPlayButtonImage:[[UIImage jsq_defaultPlayImage] jsq_imageMaskedWithColor:tintColor]
@@ -71,7 +70,7 @@
                                tintColor:tintColor
                            controlInsets:UIEdgeInsetsMake(6, 6, 6, 18)
                           controlPadding:6
-                           audioCategory:@"AVAudioSessionCategoryPlayback"
+                           audioCategory:AVAudioSessionCategorySoloAmbient
                     audioCategoryOptions:options];
 }
 

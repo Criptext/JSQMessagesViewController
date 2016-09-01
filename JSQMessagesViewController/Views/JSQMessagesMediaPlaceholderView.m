@@ -20,11 +20,44 @@
 
 #import "UIColor+JSQMessages.h"
 #import "UIImage+JSQMessages.h"
-
+#import "RGCircularSlider.h"
 
 @implementation JSQMessagesMediaPlaceholderView
 
 #pragma mark - Init
+
++ (id)viewWithAudioLoading
+{
+    RGCircularSlider *circularSlider = [[RGCircularSlider alloc]initWithFrame:CGRectMake(0, 0, 120, 120) isIncoming:false];
+    circularSlider.timeLabel.text =nil;
+    circularSlider.userInteractionEnabled = false;
+    
+    UIView *mediaView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 140, 140)];
+    [mediaView addSubview:circularSlider];
+    circularSlider.center = CGPointMake(mediaView.bounds.size.width/2, mediaView.bounds.size.height/2);
+    
+    
+    UIColor *lightGrayColor = [UIColor whiteColor];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    spinner.color = [lightGrayColor jsq_colorByDarkeningColorWithValue:0.4f];
+    
+    UIView *containerSpinner = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 140, 140)];
+    containerSpinner.backgroundColor = lightGrayColor;
+    containerSpinner.alpha = 0.60;
+    
+    [mediaView addSubview:containerSpinner];
+    containerSpinner.center = mediaView.center;
+    
+    [mediaView addSubview:spinner];
+    spinner.center = mediaView.center;
+    
+    [spinner startAnimating];
+    
+    [mediaView bringSubviewToFront:containerSpinner];
+    [mediaView bringSubviewToFront:spinner];
+    
+    return mediaView;
+}
 
 + (instancetype)viewWithActivityIndicator
 {

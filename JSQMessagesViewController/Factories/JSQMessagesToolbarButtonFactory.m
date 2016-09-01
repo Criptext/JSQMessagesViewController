@@ -18,6 +18,8 @@
 
 #import "JSQMessagesToolbarButtonFactory.h"
 
+#import "KSMManyOptionsButton.h"
+
 #import "UIColor+JSQMessages.h"
 #import "UIImage+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
@@ -74,6 +76,24 @@
                                   maxHeight);
 
     return sendButton;
+}
+
++ (UIButton *)defaultOptionsButton{
+    
+    NSBundle *bundle = [NSBundle jsq_messagesAssetBundle];
+    NSString *cancelImagePath = [bundle pathForResource:@"icon_thread_cancel" ofType:@"png" inDirectory:@"Images"];
+    NSString *micImagePath = [bundle pathForResource:@"btn_mic_active" ofType:@"png" inDirectory:@"Images"];
+    
+    KSMManyOptionsButton *button = [[KSMManyOptionsButton alloc] initWithCenterText:[NSBundle jsq_localizedStringForKey:@"send"]
+                                                                  centerButtonImage:[UIImage imageWithContentsOfFile:micImagePath]
+                                                                    leftButtonImage:[UIImage imageWithContentsOfFile:cancelImagePath]
+                                                                   rightButtonImage:nil
+                                                                     topButtonImage:nil
+                                                               andBottomButtonImage:nil];
+    
+    NSString *cancelHighlightedImagePath = [bundle pathForResource:@"icon_th_cancel_selected" ofType:@"png" inDirectory:@"Images"];
+    button.highlightedLeftButtonImage = [UIImage imageWithContentsOfFile:cancelHighlightedImagePath];
+    return button;
 }
 
 @end

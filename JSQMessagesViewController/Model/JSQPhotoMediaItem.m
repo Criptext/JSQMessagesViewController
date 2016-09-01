@@ -89,6 +89,15 @@
     return self.hash;
 }
 
+- (BOOL)needsDownload {
+    
+    if (self.image == nil) {
+        return true;
+    }
+    
+    return false;
+}
+
 #pragma mark - NSObject
 
 - (NSUInteger)hash

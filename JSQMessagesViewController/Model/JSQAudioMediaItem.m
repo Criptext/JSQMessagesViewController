@@ -164,11 +164,22 @@
     NSString *category = [AVAudioSession sharedInstance].category;
     AVAudioSessionCategoryOptions options = [AVAudioSession sharedInstance].categoryOptions;
 
+    NSError *error = nil;
     if (category != self.audioViewAttributes.audioCategory || options != self.audioViewAttributes.audioCategoryOptions) {
-        NSError *error = nil;
-        [[AVAudioSession sharedInstance] setCategory:self.audioViewAttributes.audioCategory
-                                         withOptions:self.audioViewAttributes.audioCategoryOptions
-                                               error:&error];
+        
+        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionWasInterrupted:) name:AVAudioSessionInterruptionNotification object:nil];
+        
+        if([[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient
+                                                  error:&error]){
+            NSLog(@"yeeeah");
+        }
+        if(error){
+            NSLog(@"There was an error");
+        }
+        NSLog(@"error: %@", error);
+        
+        NSLog(@"error: %@", error);
         if (self.delegate) {
             [self.delegate audioMediaItem:self didChangeAudioCategory:category options:options error:error];
         }
@@ -178,6 +189,7 @@
         self.playButton.selected = NO;
         [self stopProgressTimer];
         [self.audioPlayer stop];
+        [[AVAudioSession sharedInstance] setActive:false error:&error];
     }
     else {
         // fade the button from play to pause
@@ -191,10 +203,21 @@
 
         [self startProgressTimer];
         [self.audioPlayer play];
+        [[AVAudioSession sharedInstance] setActive:true error:&error];
+        
     }
 }
 
 #pragma mark - AVAudioPlayerDelegate
+-(void)audioSessionWasInterrupted:(NSNotification *)userinfo{
+    NSLog(@"INTERRUPT PLAYER 3");
+}
+-(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player{
+    NSLog(@"INTERRUPT PLAYER");
+}
+-(void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags{
+    NSLog(@"INTERRUPT PLAYER2");
+}
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
                        successfully:(BOOL)flag {

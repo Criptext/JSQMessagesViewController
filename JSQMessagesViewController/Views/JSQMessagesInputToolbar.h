@@ -21,6 +21,8 @@
 
 #import "JSQMessagesToolbarContentView.h"
 
+#import "KSMManyOptionsButton.h"
+
 @class JSQMessagesInputToolbar;
 
 
@@ -49,6 +51,24 @@
  */
 - (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
        didPressLeftBarButton:(UIButton *)sender;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+               didBeginOpeningButton:(KSMManyOptionsButton *)sender;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+      didOpenOptionButton:(KSMManyOptionsButton *)sender;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+        didBeginClosingOptionButton:(KSMManyOptionsButton *)sender;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+               didCloseOptionButton:(KSMManyOptionsButton *)sender;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+      didSelectOptionButton:(KSMManyOptionsButtonLocation)location;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+       didPressOptionButton:(KSMManyOptionsButton *)button;
 
 @end
 

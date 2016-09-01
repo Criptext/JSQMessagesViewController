@@ -25,13 +25,15 @@
 #import "UIColor+JSQMessages.h"
 #import "UIImage+JSQMessages.h"
 #import "UIView+JSQMessages.h"
+#import "NSBundle+JSQMessages.h"
 
 static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesInputToolbarKeyValueObservingContext;
 
 
-@interface JSQMessagesInputToolbar ()
+@interface JSQMessagesInputToolbar ()<KSMManyOptionsButtonDelegate>
 
 @property (assign, nonatomic) BOOL jsq_isObserving;
+@property (strong, nonatomic) KSMManyOptionsButton *optionsButton;
 
 @end
 
@@ -64,8 +66,28 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
     [self jsq_addObservers];
 
     self.contentView.leftBarButtonItem = [JSQMessagesToolbarButtonFactory defaultAccessoryButtonItem];
-    self.contentView.rightBarButtonItem = [JSQMessagesToolbarButtonFactory defaultSendButtonItem];
-
+    UIButton *rightButton = [JSQMessagesToolbarButtonFactory defaultSendButtonItem];
+    rightButton.hidden = true;
+    self.contentView.rightBarButtonItem = rightButton;
+    
+    self.optionsButton = [JSQMessagesToolbarButtonFactory defaultOptionsButton];
+    self.optionsButton.delegate = self;
+    
+//    self.contentView.rightBarButtonItem = self.optionsButton;
+    
+    
+    //////////////////
+    
+    self.optionsButton.center = CGPointMake(20, 17);
+    self.optionsButton.centerLabel.center = [self.optionsButton convertPoint:self.optionsButton.center fromView:self.optionsButton.superview];
+    [self.optionsButton.centerLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    self.optionsButton.centerLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [self.contentView.rightBarButtonContainerView addSubview:self.optionsButton];
+    self.optionsButton.frame = CGRectMake(self.optionsButton.frame.origin.x, self.optionsButton.frame.origin.y, self.contentView.rightBarButtonContainerView.frame.size.width, self.optionsButton.frame.size.height);
+    
+    [self.contentView bringSubviewToFront:self.contentView.rightBarButtonContainerView];
+    
     [self toggleSendButtonEnabled];
 }
 
@@ -92,29 +114,57 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 
 #pragma mark - Actions
 
+
+
 - (void)jsq_leftBarButtonPressed:(UIButton *)sender
 {
     [self.delegate messagesInputToolbar:self didPressLeftBarButton:sender];
 }
 
-- (void)jsq_rightBarButtonPressed:(UIButton *)sender
+-(void)manyOptionDidBeginOpening:(KSMManyOptionsButton *)button
 {
-    [self.delegate messagesInputToolbar:self didPressRightBarButton:sender];
+    [self.delegate messagesInputToolbar:self didBeginOpeningButton:button];
+}
+
+-(void)manyOptionDidOpen:(KSMManyOptionsButton *)button
+{
+    [self.delegate messagesInputToolbar:self didOpenOptionButton:button];
+}
+
+-(void) manyOptionDidBeginClosing:(KSMManyOptionsButton *)button
+{
+    [self.delegate messagesInputToolbar:self didBeginClosingOptionButton:button];
+}
+
+-(void)manyOptionDidClose:(KSMManyOptionsButton *)button {
+    [self.delegate messagesInputToolbar:self didCloseOptionButton:button];
+}
+
+-(void) manyOptionDidPressCenter:(KSMManyOptionsButton *)button
+{
+    [self.delegate messagesInputToolbar:self didPressRightBarButton:button];
+}
+
+-(void) manyOptionsButton:(KSMManyOptionsButton *)button didSelectButtonAtLocation:(KSMManyOptionsButtonLocation)location
+{
+    [self.delegate messagesInputToolbar:self didSelectOptionButton:location];
 }
 
 #pragma mark - Input toolbar
 
 - (void)toggleSendButtonEnabled
 {
-    BOOL hasText = [self.contentView.textView hasText];
+    [self.optionsButton showCenterText:[self.contentView.textView hasText]];
 
-    if (self.sendButtonOnRight) {
-        self.contentView.rightBarButtonItem.enabled = hasText;
-    }
-    else {
-        self.contentView.leftBarButtonItem.enabled = hasText;
-    }
+//    if (self.sendButtonOnRight) {
+//        self.contentView.rightBarButtonItem.enabled = hasText;
+//    }
+//    else {
+//        self.contentView.leftBarButtonItem.enabled = hasText;
+//    }
 }
+
+
 
 #pragma mark - Key-value observing
 
@@ -139,9 +189,9 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
                                                            action:NULL
                                                  forControlEvents:UIControlEventTouchUpInside];
 
-                [self.contentView.rightBarButtonItem addTarget:self
-                                                        action:@selector(jsq_rightBarButtonPressed:)
-                                              forControlEvents:UIControlEventTouchUpInside];
+//                [self.contentView.rightBarButtonItem addTarget:self
+//                                                        action:@selector(jsq_rightBarButtonPressed:)
+//                                              forControlEvents:UIControlEventTouchUpInside];
             }
 
             [self toggleSendButtonEnabled];

@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class KSMManyOptionsButton;
+
 /**
  *  `JSQMessagesToolbarButtonFactory` is a factory that provides a means for creating the default
  *  toolbar button items to be displayed in the content view of a `JSQMessagesInputToolbar`.
@@ -40,5 +42,8 @@
  *  @return A newly created button.
  */
 + (UIButton *)defaultSendButtonItem;
+
+
++ (KSMManyOptionsButton *)defaultOptionsButton;
 
 @end

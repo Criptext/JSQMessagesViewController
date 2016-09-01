@@ -41,6 +41,8 @@
 
 #import <objc/runtime.h>
 
+@import AVFoundation;
+
 
 // Fixes rdar://26295020
 // See issue #1247 and Peter Steinberger's comment:
@@ -119,8 +121,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 
 
-@interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
-JSQMessagesKeyboardControllerDelegate>
+@interface JSQMessagesViewController () <JSQMessagesKeyboardControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
@@ -138,6 +139,7 @@ JSQMessagesKeyboardControllerDelegate>
 
 @property (assign, nonatomic) BOOL textViewWasFirstResponderDuringInteractivePop;
 
+@property (strong, nonatomic) AVAudioRecorder *recorder;
 @end
 
 
@@ -760,6 +762,35 @@ JSQMessagesKeyboardControllerDelegate>
 
 #pragma mark - Input toolbar delegate
 
+-(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressOptionButton:(KSMManyOptionsButton *)button{
+    NSLog(@"Override this in subclass - did press button");
+}
+
+-(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didSelectOptionButton:(KSMManyOptionsButtonLocation)location{
+    NSLog(@"Override this in subclass - did select option");
+}
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+       didBeginOpeningButton:(UIButton *)sender{
+    NSLog(@"Override this in subclass - did begin opening");
+}
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+               didOpenOptionButton:(UIButton *)sender{
+    NSLog(@"Override this in subclass - did open");
+    
+}
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+ didBeginClosingOptionButton:(UIButton *)sender{
+    NSLog(@"Override this in subclass - did begin closing");
+}
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+        didCloseOptionButton:(UIButton *)sender{
+    NSLog(@"Override this in subclass - did close");
+}
+
 - (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressLeftBarButton:(UIButton *)sender
 {
     if (toolbar.sendButtonOnRight) {
@@ -796,6 +827,8 @@ JSQMessagesKeyboardControllerDelegate>
 
     return [self.inputToolbar.contentView.textView.text jsq_stringByTrimingWhitespace];
 }
+
+
 
 #pragma mark - Text view delegate
 

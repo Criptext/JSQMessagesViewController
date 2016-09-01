@@ -20,6 +20,8 @@
 
 #import "JSQMessagesBubbleImageFactory.h"
 
+#import "UIImage+JSQMessages.h"
+
 
 @implementation JSQMessagesMediaViewBubbleImageMasker
 
@@ -57,7 +59,8 @@
 
 + (void)applyBubbleImageMaskToMediaView:(UIView *)mediaView isOutgoing:(BOOL)isOutgoing
 {
-    JSQMessagesMediaViewBubbleImageMasker *masker = [[JSQMessagesMediaViewBubbleImageMasker alloc] init];
+    
+    JSQMessagesMediaViewBubbleImageMasker *masker = [[JSQMessagesMediaViewBubbleImageMasker alloc] initWithBubbleImageFactory:[[JSQMessagesBubbleImageFactory alloc] initWithBubbleImage:[UIImage jsq_bubbleCompactTaillessImage] capInsets:UIEdgeInsetsZero]];
     
     if (isOutgoing) {
         [masker applyOutgoingBubbleImageMaskToMediaView:mediaView];

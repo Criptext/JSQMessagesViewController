@@ -159,7 +159,8 @@
 
 - (void)addAudioMediaMessage
 {
-    NSString * sample = [[NSBundle mainBundle] pathForResource:@"jsq_messages_sample" ofType:@"m4a"];
+    
+    NSString * sample = [[NSBundle mainBundle] pathForResource:@"Ending K-ON! 1080p creditless-qm7Os0jVf-k" ofType:@"mp3"];
     NSData * audioData = [NSData dataWithContentsOfFile:sample];
     JSQAudioMediaItem *audioItem = [[JSQAudioMediaItem alloc] initWithData:audioData];
     JSQMessage *audioMessage = [JSQMessage messageWithSenderId:kJSQDemoAvatarIdSquires
