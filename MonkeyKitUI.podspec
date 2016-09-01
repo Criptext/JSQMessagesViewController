@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
 	s.name = 'MonkeyKitUI'
-	s.version = '7.3.6'
+	s.version = '7.4.0'
 	s.summary = 'An elegant messages UI library for iOS.'
-	s.homepage = 'http://jessesquires.github.io/JSQMessagesViewController'
+	s.homepage = 'https://criptext.com'
 	s.license = 'MIT'
 	s.platform = :ios, '7.0'
 
-	s.author = 'Jesse Squires'
-	s.social_media_url = 'https://twitter.com/jesse_squires'
+	s.author = 'Criptext, Inc.'
+	s.social_media_url = 'https://twitter.com/criptext'
 
 	s.screenshots = ['https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Screenshots/screenshot0.png',
                     'https://raw.githubusercontent.com/jessesquires/JSQMessagesViewController/develop/Screenshots/screenshot1.png',
