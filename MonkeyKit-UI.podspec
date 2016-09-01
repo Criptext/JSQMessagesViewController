@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name = 'MonkeyKit-UI'
-	s.version = '7.3.4'
+	s.version = '7.3.5'
 	s.summary = 'An elegant messages UI library for iOS.'
 	s.homepage = 'http://jessesquires.github.io/JSQMessagesViewController'
 	s.license = 'MIT'
