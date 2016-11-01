@@ -171,6 +171,7 @@
 //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioSessionWasInterrupted:) name:AVAudioSessionInterruptionNotification object:nil];
         
         if([[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient
+                                            withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
                                                   error:&error]){
             NSLog(@"yeeeah");
         }
