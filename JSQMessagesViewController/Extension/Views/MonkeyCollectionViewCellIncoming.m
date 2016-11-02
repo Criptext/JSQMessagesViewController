@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Criptext INC. All rights reserved.
 //
 
-#import "JSQMessagesCollectionViewCellIncoming2.h"
+#import "MonkeyCollectionViewCellIncoming.h"
 
-@interface JSQMessagesCollectionViewCellIncoming2()
+@interface MonkeyCollectionViewCellIncoming()
 @property CGPoint originalCenterHora;
 
 @end
-@implementation JSQMessagesCollectionViewCellIncoming2
+@implementation MonkeyCollectionViewCellIncoming
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -42,7 +42,7 @@
     // 1
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         // if the gesture has just started, record the current centre location
-        self.originalCenterHora = self.horaDelMensaje.center;
+        self.originalCenterHora = self.dateLabel.center;
     }
     // 2
     if (recognizer.state == UIGestureRecognizerStateChanged) {
@@ -51,24 +51,24 @@
         CGPoint translation = [recognizer translationInView:self.messageBubbleContainerView];
 
         if(translation.x<0 && translation.x>=-60){
-            self.horaDelMensaje.center = CGPointMake(self.originalCenterHora.x + translation.x, self.originalCenterHora.y);
+            self.dateLabel.center = CGPointMake(self.originalCenterHora.x + translation.x, self.originalCenterHora.y);
         }
         else if(translation.x<0){
-            self.horaDelMensaje.center = CGPointMake(self.originalCenterHora.x - 60, self.originalCenterHora.y);
+            self.dateLabel.center = CGPointMake(self.originalCenterHora.x - 60, self.originalCenterHora.y);
         }
         
         if (translation.x>-100) {
-            self.horaDelMensaje.alpha = translation.x / (-100);
+            self.dateLabel.alpha = translation.x / (-100);
         }
         
     }
     // 3
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         // the frame this cell would have had before being dragged
-        CGRect originalFrameHora = CGRectMake(self.originalCenterHora.x-(self.horaDelMensaje.bounds.size.width/2),self.originalCenterHora.y-(self.horaDelMensaje.bounds.size.height/2), self.horaDelMensaje.bounds.size.width, self.horaDelMensaje.bounds.size.height);
+        CGRect originalFrameHora = CGRectMake(self.originalCenterHora.x-(self.dateLabel.bounds.size.width/2),self.originalCenterHora.y-(self.dateLabel.bounds.size.height/2), self.dateLabel.bounds.size.width, self.dateLabel.bounds.size.height);
         
         [UIView animateWithDuration:0.2 animations:^{
-            self.horaDelMensaje.frame = originalFrameHora;
+            self.dateLabel.frame = originalFrameHora;
         }];
         
     }

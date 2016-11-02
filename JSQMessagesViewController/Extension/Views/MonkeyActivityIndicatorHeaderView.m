@@ -6,27 +6,27 @@
 //  Copyright © 2016 Hexed Bits. All rights reserved.
 //
 
-#import "JSQMessagesActivityIndicatorHeaderView.h"
+#import "MonkeyActivityIndicatorHeaderView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
 #import "NSBundle+JSQMessages.h"
 
-@interface JSQMessagesActivityIndicatorHeaderView ()
+@interface MonkeyActivityIndicatorHeaderView ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
-@implementation JSQMessagesActivityIndicatorHeaderView
+@implementation MonkeyActivityIndicatorHeaderView
 #pragma mark - Class methods
 
 + (UINib *)nib
 {
-    return [UINib nibWithNibName:NSStringFromClass([JSQMessagesActivityIndicatorHeaderView class])
-                          bundle:[NSBundle bundleForClass:[JSQMessagesActivityIndicatorHeaderView class]]];
+    return [UINib nibWithNibName:NSStringFromClass([MonkeyActivityIndicatorHeaderView class])
+                          bundle:[NSBundle bundleForClass:[MonkeyActivityIndicatorHeaderView class]]];
 }
 
 + (NSString *)headerReuseIdentifier
 {
-    return NSStringFromClass([JSQMessagesActivityIndicatorHeaderView class]);
+    return NSStringFromClass([MonkeyActivityIndicatorHeaderView class]);
 }
 
 #pragma mark - Initialization
