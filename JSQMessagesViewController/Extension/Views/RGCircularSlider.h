@@ -10,10 +10,10 @@
 #import <AVFoundation/AVFoundation.h>
 
 @protocol RGCircularSliderDelegate <NSObject>
-
-- (BOOL)audioDidBeginPlaying:(id)audioSlider;
-- (BOOL)audioDidFinishPlaying:(id)audioSlider;
-- (BOOL)audioDidBeginPause:(id)audioSlider;
+- (void)audioDidBeginPlaying:(id _Nonnull)audioSlider;
+- (void)audioDidFinishPlaying:(id _Nonnull)audioSlider;
+@optional
+- (void)audioDidBeginPause:(id _Nonnull)audioSlider;
 - (void)audioIsEmpty;
 
 @end
