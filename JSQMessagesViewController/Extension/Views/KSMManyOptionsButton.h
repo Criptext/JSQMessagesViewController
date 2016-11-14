@@ -11,18 +11,18 @@
 @protocol KSMManyOptionsButtonDelegate;
 
 /**
- *  An enumeration for the different locations of buttons on the 
+ *  An enumeration for the different locations of buttons on the
  *  KSMManyOptionsButton view.
  *
  *  @author Kieraj S. Mumick
  *  @copyright 2014, Chaiwalla
  */
 typedef NS_ENUM(NSUInteger, KSMManyOptionsButtonLocation) {
-    KSMManyOptionsButtonLocationTop,    /// The location above the center button.
-    KSMManyOptionsButtonLocationBottom, /// The location below the center button.
-    KSMManyOptionsButtonLocationLeft,   /// The location left of the center button.
-    KSMManyOptionsButtonLocationRight,   /// The location right of the center button.
-    KSMManyOptionsButtonLocationNone
+  KSMManyOptionsButtonLocationTop,    /// The location above the center button.
+  KSMManyOptionsButtonLocationBottom, /// The location below the center button.
+  KSMManyOptionsButtonLocationLeft,   /// The location left of the center button.
+  KSMManyOptionsButtonLocationRight,   /// The location right of the center button.
+  KSMManyOptionsButtonLocationNone
 };
 
 /**
@@ -32,9 +32,9 @@ typedef NS_ENUM(NSUInteger, KSMManyOptionsButtonLocation) {
  *  @copyright 2014, Chaiwalla
  */
 typedef NS_ENUM(NSUInteger, KSMManyOptionsButtonState) {
-    KSMManyOptionsButtonStateOpen,    /// The state for when all of the buttons on the view are showing.
-    KSMManyOptionsButtonStateClosed,  /// The state for when only the center button is showing.
-    KSMManyOptionsButtonStateExpanded /// The state for when one of the outer buttons is highlighted
+  KSMManyOptionsButtonStateOpen,    /// The state for when all of the buttons on the view are showing.
+  KSMManyOptionsButtonStateClosed,  /// The state for when only the center button is showing.
+  KSMManyOptionsButtonStateExpanded /// The state for when one of the outer buttons is highlighted
 };
 
 /**
@@ -46,28 +46,28 @@ typedef NS_ENUM(NSUInteger, KSMManyOptionsButtonState) {
  *  @copyright 2014, Chaiwalla
  */
 @interface KSMManyOptionsButton : UIButton{
-    BOOL btnBegan;
-    BOOL stopOpening;
+  BOOL btnBegan;
+  BOOL stopOpening;
 }
 
 /// Image that will be displayed at the respective location on the KSMManyOptionsButton @author Kieraj S. Mumick
 @property (strong, nonatomic) UIImage *leftButtonImage,
-                                      *rightButtonImage,
-                                      *topButtonImage,
-                                      *bottomButtonImage;
+*rightButtonImage,
+*topButtonImage,
+*bottomButtonImage;
 @property (strong, nonatomic) UILabel *centerLabel;
 
 /// Images that will be displayed when one of the buttons is highlighted
 @property (strong, nonatomic) UIImage *highlightedLeftButtonImage,
-                                      *highlightedRightButtonImage,
-                                      *highlightedTopButtonImage,
-                                      *highlightedBottomButtonImage;
+*highlightedRightButtonImage,
+*highlightedTopButtonImage,
+*highlightedBottomButtonImage;
 
 /// The image view to use for the left, right, top, and bottom buttons. @author Kieraj S. Mumick
 @property (strong, nonatomic) UIImageView *leftButtonImageView,
-                                          *rightButtonImageView,
-                                          *topButtonImageView,
-                                          *bottomButtonImageView;
+*rightButtonImageView,
+*topButtonImageView,
+*bottomButtonImageView;
 
 /// Image that will be displayed as teh center button on the KSMManyOptionsButton. @author Kieraj S. Mumick
 @property (strong, nonatomic) UIImage *centerButtonImage;

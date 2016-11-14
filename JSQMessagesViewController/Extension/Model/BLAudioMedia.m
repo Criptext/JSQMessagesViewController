@@ -25,145 +25,145 @@
 #pragma mark - Initialization
 
 -(instancetype)initWithAudio:(NSData *)data{
-    self = [super init];
-    if (self) {
-        _audio = [data copy];
-        _cachedAudioView = nil;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    _audio = [data copy];
+    _cachedAudioView = nil;
+  }
+  return self;
 }
 
 - (void)clearCachedMediaViews
 {
-    [super clearCachedMediaViews];
-    _cachedAudioView = nil;
+  [super clearCachedMediaViews];
+  _cachedAudioView = nil;
 }
 
 #pragma mark - Setters
 
 - (void)setAudio:(NSData *)audio
 {
-    _audio = [audio copy];
-    _cachedAudioView = nil;
+  _audio = [audio copy];
+  _cachedAudioView = nil;
 }
 
 - (void)setAppliesMediaViewMaskAsOutgoing:(BOOL)appliesMediaViewMaskAsOutgoing
 {
-    [super setAppliesMediaViewMaskAsOutgoing:appliesMediaViewMaskAsOutgoing];
-    _cachedAudioView = nil;
+  [super setAppliesMediaViewMaskAsOutgoing:appliesMediaViewMaskAsOutgoing];
+  _cachedAudioView = nil;
 }
 
 - (void)setFilePath:(NSString *)path {
-    if (self.audio == nil) {
-        return;
-    }
-    
-    ((RGCircularSlider *)[self mediaView].subviews.firstObject).soundFilePath = path;
+  if (self.audio == nil) {
+    return;
+  }
+  
+  ((RGCircularSlider *)[self mediaView].subviews.firstObject).soundFilePath = path;
 }
 
 - (void)setAudioDuration:(double)duration {
-    if (self.audio == nil) {
-        return;
-    }
-    
-    ((RGCircularSlider *)[self mediaView].subviews.firstObject).timeLabel.text = [((RGCircularSlider *)[self mediaView].subviews.firstObject) timeFormat:duration];
+  if (self.audio == nil) {
+    return;
+  }
+  
+  ((RGCircularSlider *)[self mediaView].subviews.firstObject).timeLabel.text = [((RGCircularSlider *)[self mediaView].subviews.firstObject) timeFormat:duration];
 }
 
 #pragma mark - JSQMessageMediaData protocol
 
 - (CGSize)mediaViewDisplaySize
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return CGSizeMake(140, 120);
-    }
-    
+  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
     return CGSizeMake(140, 120);
+  }
+  
+  return CGSizeMake(140, 120);
 }
 
 - (UIView *)mediaView
 {
-    if (self.audio == nil) {
-        return nil;
-    }
+  if (self.audio == nil) {
+    return nil;
+  }
+  
+  if (self.cachedAudioView == nil) {
+    CGSize size = [self mediaViewDisplaySize];
+    RGCircularSlider *circularSlider = [[RGCircularSlider alloc]initWithFrame:CGRectMake(0, 0, size.width - 20, size.height) isIncoming:self.appliesMediaViewMaskAsOutgoing];
+    UIView *mediaView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    [mediaView addSubview:circularSlider];
+    circularSlider.center = CGPointMake(mediaView.bounds.size.width/2, mediaView.bounds.size.height/2);
     
-    if (self.cachedAudioView == nil) {
-        CGSize size = [self mediaViewDisplaySize];
-        RGCircularSlider *circularSlider = [[RGCircularSlider alloc]initWithFrame:CGRectMake(0, 0, size.width - 20, size.height) isIncoming:self.appliesMediaViewMaskAsOutgoing];
-        UIView *mediaView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-        [mediaView addSubview:circularSlider];
-        circularSlider.center = CGPointMake(mediaView.bounds.size.width/2, mediaView.bounds.size.height/2);
-
-        [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:mediaView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
-        self.cachedAudioView = mediaView;
-    }
-    
-    return self.cachedAudioView;
+    [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:mediaView isOutgoing:self.appliesMediaViewMaskAsOutgoing];
+    self.cachedAudioView = mediaView;
+  }
+  
+  return self.cachedAudioView;
 }
 
 - (NSUInteger)mediaHash
 {
-    return self.hash;
+  return self.hash;
 }
 
 - (BOOL)needsDownload {
-    
-    if (self.audio == nil) {
-        return true;
-    }
-    
-    return false;
+  
+  if (self.audio == nil) {
+    return true;
+  }
+  
+  return false;
 }
 
 #pragma mark - NSObject
 
 - (NSUInteger)hash
 {
-    return super.hash ^ self.audio.hash;
+  return super.hash ^ self.audio.hash;
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: image=%@, appliesMediaViewMaskAsOutgoing=%@>",
-            [self class], self.audio, @(self.appliesMediaViewMaskAsOutgoing)];
+  return [NSString stringWithFormat:@"<%@: image=%@, appliesMediaViewMaskAsOutgoing=%@>",
+          [self class], self.audio, @(self.appliesMediaViewMaskAsOutgoing)];
 }
 
 #pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        _audio = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(audio))];
-    }
-    return self;
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    _audio = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(audio))];
+  }
+  return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [super encodeWithCoder:aCoder];
-    [aCoder encodeObject:self.audio forKey:NSStringFromSelector(@selector(audio))];
+  [super encodeWithCoder:aCoder];
+  [aCoder encodeObject:self.audio forKey:NSStringFromSelector(@selector(audio))];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    
-    BLAudioMedia *copy = [[BLAudioMedia allocWithZone:zone] initWithAudio:self.audio];
-    copy.appliesMediaViewMaskAsOutgoing = self.appliesMediaViewMaskAsOutgoing;
-    return copy;
+  
+  BLAudioMedia *copy = [[BLAudioMedia allocWithZone:zone] initWithAudio:self.audio];
+  copy.appliesMediaViewMaskAsOutgoing = self.appliesMediaViewMaskAsOutgoing;
+  return copy;
 }
 
 -(UIView *)mediaPlaceholderView{
-    if (self.cachedPlaceholderView == nil) {
-        CGSize size = [self mediaViewDisplaySize];
-        UIView *view = [JSQMessagesMediaPlaceholderView viewWithAudioLoading];
-        view.frame = CGRectMake(0.0f, 0.0f, size.width, size.height);
-        [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:view isOutgoing:self.appliesMediaViewMaskAsOutgoing];
-        self.cachedPlaceholderView = view;
-    }
-    
-    return self.cachedPlaceholderView;
+  if (self.cachedPlaceholderView == nil) {
+    CGSize size = [self mediaViewDisplaySize];
+    UIView *view = [JSQMessagesMediaPlaceholderView viewWithAudioLoading];
+    view.frame = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    [JSQMessagesMediaViewBubbleImageMasker applyBubbleImageMaskToMediaView:view isOutgoing:self.appliesMediaViewMaskAsOutgoing];
+    self.cachedPlaceholderView = view;
+  }
+  
+  return self.cachedPlaceholderView;
 }
 ///////////////////////
 
@@ -171,9 +171,9 @@
 //    if (self = [super init]) {
 //        self.appliesMediaViewMaskAsOutgoing = isOutgoing;
 ////        self.size = CGSizeMake(140, 120);
-//        
+//
 ////        NSString *mediaPath = [[self documentsDirectory] stringByAppendingPathComponent:_mediaName];
-//        
+//
 //        if(!isOutgoing){
 //            UIView *view = [JSQMessagesMediaPlaceholderView viewWithAudioLoading];
 //            view.contentMode = UIViewContentModeScaleAspectFill;
@@ -183,7 +183,7 @@
 //            self.cachedMediaView = view;
 //            return self;
 //        }
-//        
+//
 //    }
 //    return self;
 //}
