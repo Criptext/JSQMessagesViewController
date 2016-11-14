@@ -20,16 +20,18 @@
 #define JSQMessages_JSQMessages_h
 
 #import "JSQMessagesViewController.h"
+#import "MOKChatViewController.h"
 
 //  Views
 #import "JSQMessagesCollectionView.h"
 #import "JSQMessagesCollectionViewCellIncoming.h"
 #import "JSQMessagesCollectionViewCellOutgoing.h"
-#import "JSQMessagesCollectionViewCellIncoming2.h"
-#import "JSQMessagesCollectionViewCellOutgoing2.h"
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
-#import "JSQMessagesActivityIndicatorHeaderView.h"
+
+#import "MonkeyCollectionViewCellIncoming.h"
+#import "MonkeyCollectionViewCellOutgoing.h"
+#import "MonkeyActivityIndicatorHeaderView.h"
 
 //  Layout
 #import "JSQMessagesBubbleSizeCalculating.h"

@@ -8,16 +8,16 @@
 
 #import "JSQMessagesCollectionViewCellOutgoing.h"
 
-@protocol JSQMessagesCollectionViewCellOutgoingDelegate <NSObject>
+@protocol MonkeyCollectionViewCellOutgoingDelegate <NSObject>
 -(void)createActionSheetResend:(JSQMessagesCollectionViewCellOutgoing *)cell;
 @end
 
-@interface JSQMessagesCollectionViewCellOutgoing2 : JSQMessagesCollectionViewCellOutgoing
-@property (weak, nonatomic) id<JSQMessagesCollectionViewCellOutgoingDelegate>criptextDelegate;
+@interface MonkeyCollectionViewCellOutgoing : JSQMessagesCollectionViewCellOutgoing
+@property (weak, nonatomic) id<MonkeyCollectionViewCellOutgoingDelegate>criptextDelegate;
 @property (weak, nonatomic) IBOutlet UIButton *resendButton;
 @property (weak, nonatomic) IBOutlet UIView *privateLabelContainer;
 @property (weak, nonatomic) IBOutlet UILabel *privateLabelMessage;
-@property (weak, nonatomic) IBOutlet UILabel *horaDelMensaje;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *messageLoadingImageView;
 @property BOOL shouldAnimate;
 @property BOOL isAnimating;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JSQMessagesActivityIndicatorHeaderView : UICollectionReusableView
+@interface MonkeyActivityIndicatorHeaderView : UICollectionReusableView
 
 #pragma mark - Class methods
 

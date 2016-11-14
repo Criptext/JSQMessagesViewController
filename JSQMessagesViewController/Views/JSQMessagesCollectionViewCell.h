@@ -167,6 +167,8 @@
  */
 @property (weak, nonatomic, readonly) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (weak, nonatomic) UILabel *dateLabel;
+
 #pragma mark - Class methods
 
 /**

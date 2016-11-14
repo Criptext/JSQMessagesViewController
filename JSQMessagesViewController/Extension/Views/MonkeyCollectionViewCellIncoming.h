@@ -8,15 +8,15 @@
 
 #import "JSQMessagesCollectionViewCellIncoming.h"
 
-@protocol JSQMessagesCollectionViewCellIncomingDelegate <NSObject>
+@protocol MonkeyCollectionViewCellIncomingDelegate <NSObject>
 -(void)openTextEfimero:(JSQMessagesCollectionViewCellIncoming *)cell;
 @end
 
-@interface JSQMessagesCollectionViewCellIncoming2 : JSQMessagesCollectionViewCellIncoming
-@property (weak, nonatomic) id<JSQMessagesCollectionViewCellIncomingDelegate>criptextDelegate;
+@interface MonkeyCollectionViewCellIncoming : JSQMessagesCollectionViewCellIncoming
+@property (weak, nonatomic) id<MonkeyCollectionViewCellIncomingDelegate>criptextDelegate;
 @property (nonatomic, strong) NSTimer *timerEfimero;
 @property (weak, nonatomic) IBOutlet UIButton *privateTapButton;
-@property (weak, nonatomic) IBOutlet UILabel *horaDelMensaje;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *protectedLabel;
 
 -(void)cellHandlePan:(UIGestureRecognizer *)recognizer;
