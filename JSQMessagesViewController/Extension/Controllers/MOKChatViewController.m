@@ -80,18 +80,18 @@
   self.nameLabel.textColor = [UIColor blackColor];
   self.nameLabel.font = [UIFont boldSystemFontOfSize:16.0];
   self.nameLabel.textAlignment = NSTextAlignmentCenter;
-//  self.nameLabel.text = self.conversation.info["name"] as? String ?? "Unknown"
   
   self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.descriptionView.frame.size.height - self.descriptionView.frame.size.height/2.4 - 2, self.descriptionView.frame.size.width, self.descriptionView.frame.size.height/2.4)];
   self.statusLabel.textColor = [UIColor grayColor];
   self.statusLabel.font = [UIFont systemFontOfSize:11.0];
   self.statusLabel.textAlignment = NSTextAlignmentCenter;
-//  self.statusLabel.text = self.nameMembersDescription ?? ""
   
   [self.descriptionView addSubview:self.nameLabel];
   [self.descriptionView addSubview:self.statusLabel];
   
   self.navigationItem.titleView = self.descriptionView;
+  
+  //Leaving this for future reference
   
 //  self.descriptionViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showInfoConversation(_:)))
 //  self.descriptionViewTapRecognizer.numberOfTapsRequired = 1
@@ -101,11 +101,10 @@
   self.negativeSpacerButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
   self.negativeSpacerButtonItem.width = -12;
   
+  self.avatarImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Profile_imgDefault.png"]];
   
   self.avatarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-  self.avatarImageView = [UIImageView new];
-//  self.avatarImageView.sd_setImage(with: self.conversation.getAvatarURL(), placeholderImage: UIImage(named: "Profile_imgDefault.png"))
-//  self.avatarButton.setImage(self.avatarImageView.image, for: UIControlState.normal)
+  [self.avatarButton setImage:self.avatarImageView.image forState:UIControlStateNormal];
   self.avatarButton.layer.cornerRadius = 18;
   self.avatarButton.layer.masksToBounds = true;
   
