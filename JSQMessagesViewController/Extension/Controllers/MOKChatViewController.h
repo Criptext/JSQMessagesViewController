@@ -11,9 +11,27 @@
 #import "JSQMessagesBubbleImage.h"
 #import "JSQMessagesBubbleImageFactory.h"
 
-@interface MOKChatViewController : JSQMessagesViewController <UIGestureRecognizerDelegate>
+@protocol MOKMediaDataDelegate <NSObject>
+
+-(void)recordedAudio:(NSData *)data;
+-(void)selectedImage:(NSData *)data;
+
+@end
+
+@interface MOKChatViewController : JSQMessagesViewController <UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (nonatomic, weak) id<MOKMediaDataDelegate> mediaDataDelegate;
 
 @property (nonatomic, strong) NSString *headerViewIdentifier;
+
+@property (nonatomic, strong) UIView *descriptionView;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *statusLabel;
+//@property (nonatomic, strong) UITapGestureRecognizer *descriptionViewTapRecognizer;
+
+@property (nonatomic, strong) UIBarButtonItem *avatarBarButtonItem;
+@property (nonatomic, strong) UIButton *avatarButton;
+@property (nonatomic, strong) UIImageView *avatarImageView;
 
 @property (nonatomic, strong) UILabel *timerLabel;
 
