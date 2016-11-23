@@ -9,11 +9,11 @@
 #import "JSQMessagesCollectionViewCellOutgoing.h"
 
 @protocol MonkeyCollectionViewCellOutgoingDelegate <NSObject>
--(void)createActionSheetResend:(JSQMessagesCollectionViewCellOutgoing *)cell;
+-(void)didPressResend:(JSQMessagesCollectionViewCellOutgoing *)cell;
 @end
 
 @interface MonkeyCollectionViewCellOutgoing : JSQMessagesCollectionViewCellOutgoing
-@property (weak, nonatomic) id<MonkeyCollectionViewCellOutgoingDelegate>criptextDelegate;
+@property (weak, nonatomic) id<MonkeyCollectionViewCellOutgoingDelegate>monkeyDelegate;
 @property (weak, nonatomic) IBOutlet UIButton *resendButton;
 @property (weak, nonatomic) IBOutlet UIView *privateLabelContainer;
 @property (weak, nonatomic) IBOutlet UILabel *privateLabelMessage;

@@ -90,7 +90,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y9b-D9-Q7W" userLabel="Avatar Image View">
                                 <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading-message-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XkJ-Qq-3Ns" userLabel="Loading Message">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_error_resend" translatesAutoresizingMaskIntoConstraints="NO" id="XkJ-Qq-3Ns" userLabel="Loading Message">
                                 <rect key="frame" x="11" y="11" width="12" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="JMe-6X-91X"/>
@@ -192,8 +192,8 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="icon_error_resend" width="24" height="24"/>
         <image name="icon_error_resend.png" width="64" height="64"/>
-        <image name="loading-message-icon.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

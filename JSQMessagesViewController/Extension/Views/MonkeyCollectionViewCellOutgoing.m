@@ -7,6 +7,7 @@
 //
 
 #import "MonkeyCollectionViewCellOutgoing.h"
+#import "NSBundle+JSQMessages.h"
 
 @interface MonkeyCollectionViewCellOutgoing()
 @property CGPoint originalCenterBurbuja;
@@ -35,6 +36,11 @@
     self.cellBottomLabel.textAlignment = NSTextAlignmentRight;
     self.privateLabelMessage.text = NSLocalizedString(@"privateMessage", @"");
     self.isAnimating = false;
+  
+  NSBundle *bundle = [NSBundle jsq_messagesAssetBundle];
+  NSString *path = [bundle pathForResource:@"icon_error_resend" ofType:@"png" inDirectory:@"Images"];
+  
+    [self.resendButton setImage:[UIImage imageWithContentsOfFile:path] forState:UIControlStateNormal];
     self.messageLoadingImageView.hidden = true;
 }
 
@@ -109,8 +115,8 @@
     
 }
 - (IBAction)didPressResend:(id)sender {
-    if ([self.criptextDelegate respondsToSelector:@selector(createActionSheetResend:)]) {
-        [self.criptextDelegate createActionSheetResend:self];
+    if ([self.monkeyDelegate respondsToSelector:@selector(didPressResend:)]) {
+        [self.monkeyDelegate didPressResend:self];
     }
 }
 
